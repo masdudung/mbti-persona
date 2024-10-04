@@ -6,13 +6,13 @@ export class UserEntity {
   @PrimaryKey()
   id: number;
 
-  @Property()
+  @Property({ unique: true })
   email: string;
 
   @Property()
   fullname: string;
 
-  @Property()
+  @Property({ nullable: true })
   phone: string;
 
   @Exclude()

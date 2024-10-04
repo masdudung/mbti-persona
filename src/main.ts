@@ -7,7 +7,6 @@ import * as dotenv from 'dotenv';
 async function bootstrap() {
   dotenv.config();
 
-  const port = process.env.APP_PORT;
   const app = await NestFactory.create(AppModule);
 
   // modify header and enable cors
@@ -27,13 +26,14 @@ async function bootstrap() {
     }),
   );
 
+  const port = process.env.APP_PORT;
+  await app.listen(port);
+
   // Get the address information
   const address = app.getHttpServer().address();
 
   // Log the IP address and port
   const ip = address.address === '::' ? 'localhost' : address.address; // Handle IPv6
   console.log(`Nest application is running at http://${ip}:${port}`);
-
-  await app.listen(port);
 }
 bootstrap();
