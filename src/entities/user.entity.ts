@@ -1,12 +1,10 @@
 import { Property, PrimaryKey, Entity } from '@mikro-orm/core';
+import { Exclude } from 'class-transformer';
 
 @Entity({ tableName: 'users' })
 export class UserEntity {
   @PrimaryKey()
   id: number;
-
-  @Property()
-  username: string;
 
   @Property()
   email: string;
@@ -17,6 +15,7 @@ export class UserEntity {
   @Property()
   phone: string;
 
+  @Exclude()
   @Property()
   password: string;
 }
