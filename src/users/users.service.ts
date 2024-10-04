@@ -6,7 +6,7 @@ import {
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { RegisterDto } from '@/auth/dto/register.dto';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { UserEntity } from '@/entities/user.entity';
+import { UserEntity } from '@/common/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

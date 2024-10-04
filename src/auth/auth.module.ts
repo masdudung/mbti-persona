@@ -4,13 +4,14 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '@/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { RefreshTokenEntity } from '@/common/entities/refresh-token.entity';
 dotenv.config();
-
-console.log(process.env.JWT_SECRET);
 
 @Module({
   imports: [
     UsersModule,
+    MikroOrmModule.forFeature([RefreshTokenEntity]),
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,

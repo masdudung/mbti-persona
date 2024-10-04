@@ -13,6 +13,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "migrate:create": "npx mikro-orm migration:create --config src/mikro-orm.config.ts",
+    "migrate:fresh": "npx mikro-orm migration:fresh --config src/mikro-orm.config.ts",
     "migrate:up": "npx mikro-orm migration:up --config src/mikro-orm.config.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
