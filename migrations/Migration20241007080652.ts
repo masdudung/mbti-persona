@@ -1,10 +1,8 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20241007070818 extends Migration {
+export class Migration20241007080652 extends Migration {
 
   override async up(): Promise<void> {
-    this.addSql(`alter table "answer_entity" drop constraint "answer_entity_question_id_foreign";`);
-
     this.addSql(`create table "questions" ("id" serial primary key, "pertanyaan" varchar(255) not null, "type" varchar(255) not null);`);
 
     this.addSql(`create table "users" ("id" serial primary key, "email" varchar(255) not null, "fullname" varchar(255) not null, "phone" varchar(255) null, "password" varchar(255) not null);`);
@@ -19,10 +17,6 @@ export class Migration20241007070818 extends Migration {
 
     this.addSql(`alter table "user_answers" add constraint "user_answers_user_id_foreign" foreign key ("user_id") references "users" ("id") on update cascade;`);
     this.addSql(`alter table "user_answers" add constraint "user_answers_question_id_foreign" foreign key ("question_id") references "questions" ("id") on update cascade;`);
-
-    this.addSql(`drop table if exists "answer_entity" cascade;`);
-
-    this.addSql(`drop table if exists "question_entity" cascade;`);
   }
 
   override async down(): Promise<void> {
@@ -31,12 +25,6 @@ export class Migration20241007070818 extends Migration {
     this.addSql(`alter table "refresh_tokens" drop constraint "refresh_tokens_user_id_foreign";`);
 
     this.addSql(`alter table "user_answers" drop constraint "user_answers_user_id_foreign";`);
-
-    this.addSql(`create table "answer_entity" ("id" serial primary key, "user_id" int4 not null, "question_id" int4 not null, "answer" int4 not null, "result" varchar(255) not null);`);
-
-    this.addSql(`create table "question_entity" ("id" serial primary key, "pertanyaan" varchar(255) not null, "type" varchar(255) not null);`);
-
-    this.addSql(`alter table "answer_entity" add constraint "answer_entity_question_id_foreign" foreign key ("question_id") references "question_entity" ("id") on update cascade on delete no action;`);
 
     this.addSql(`drop table if exists "questions" cascade;`);
 

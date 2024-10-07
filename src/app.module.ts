@@ -5,10 +5,15 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import microOrmConfig from './mikro-orm.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { QuestionsModule } from './questions/questions.module';
+import { MbtiTestModule } from './mbti-test/mbti-test.module';
 
 @Module({
-  imports: [MikroOrmModule.forRoot(microOrmConfig), UsersModule, AuthModule, QuestionsModule],
+  imports: [
+    MikroOrmModule.forRoot(microOrmConfig),
+    UsersModule,
+    AuthModule,
+    MbtiTestModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
