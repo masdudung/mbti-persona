@@ -20,11 +20,6 @@ export class UsersController {
   @Get()
   async getAllUsers(@Request() req): Promise<ApiResponse<UserEntity[]>> {
     console.log(req.user);
-    console.log(req.isAuthenticated);
-    console.log(req._sessionManager);
-    console.log(req.isUnauthenticated);
-    console.log(req.Login);
-    console.log(req.logout);
     const users = await this.userService.getAll();
     return new ApiResponse(users);
   }
